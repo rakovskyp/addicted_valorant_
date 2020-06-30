@@ -5,9 +5,6 @@ import { FaSearch } from "react-icons/fa";
 
 const API_ENDPOINT = 'http://hn.algolia.com/api/v1/items/1';
 
-const getAsyncTime = () => 
-  new Promise((resolve, reject) => setTimeout(reject, 2000));
-
 const timeReducer = (state, action) => {
   switch (action.type) {
     case 'TIME_FETCH_INIT':
@@ -69,26 +66,25 @@ function App() {
 
   return (
     <>
-      <div className='container'>
-        <div>
-          <h1 className="title">Addicted to Valorant</h1>
-          <form className='search-box' onSubmit={handleSubmit}>
-            <input className='search-txt' type="text" id="search" placeholder='riot id n shit'/>
-            <a className='search-btn'>
-              <FaSearch/>
-            </a>
-            {/* <button 
-              type="submit">
-              Submit
-            </button> */}
-          </form>
-        </div>
+      <div >
+        <h1 className="title" >Addicted to Valorant</h1>
+        <h4 className="sub-title"> HOW MUCH TIME HAVE YOU SPENT ON VALORANT?</h4>
 
-        <div className='data'>
-          {time.isError && <p>Something went wrong while fetching data</p>}
+        <form className='search-box' onSubmit={handleSubmit}>
+          <input className='search-txt' type="text" id="search" placeholder='riot id n shit'/>
+          <a className='search-btn'>
+            <FaSearch/>
+          </a>
+          {/* <button 
+            type="submit">
+            Submit
+          </button> */}
+        </form>
 
-          {time.isLoading ? (<p>Loading...</p>) : (<p>{time.data.type}</p>)}
-        </div>
+        {time.isError && <p className="err-load-txt">Something went wrong while fetching data</p>}
+
+        {time.isLoading ? (<p>Loading...</p>) : (<p className="err-load-txt">{time.data.type}</p>)}
+        
       </div>
     </>
   );
