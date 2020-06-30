@@ -3,8 +3,9 @@ import axios from 'axios';
 import "./App.css";
 import { FaSearch } from "react-icons/fa";
 
-const API_ENDPOINT = 'http://hn.algolia.com/api/v1/items/1';
+const API_ENDPOINT = 'http://hn.algolia.com/api/v1/items/';
 
+// reducer function
 const timeReducer = (state, action) => {
   switch (action.type) {
     case 'TIME_FETCH_INIT':
@@ -38,8 +39,14 @@ function App() {
     { data: [], isLoading: false, isError: false }
   );
 
-  // useEffect Hook
-  
+  // useState hook for the inputted username in the search bar
+  const [userInput, setUserInput] = React.useState();
+
+  // Function to handle when the input to the search bar is changed
+  const handleSearchInput = (event) =>
+  {
+    setUserInput(event.target.value);
+  }
 
   // Function to handle the submit button being clicked
   const handleSubmit = (event) =>
@@ -49,7 +56,7 @@ function App() {
     dispatchTime({type: 'TIME_FETCH_INIT'});
     
     axios
-      .get(`${API_ENDPOINT}`)
+      .get(`${API_ENDPOINT}${userInput}`)
       .then(result => {
         dispatchTime({
           type: 'TIME_FETCH_SUCCESS',
@@ -71,7 +78,7 @@ function App() {
         <h4 className="sub-title"> HOW MUCH TIME HAVE YOU SPENT ON VALORANT?</h4>
 
         <form className='search-box' onSubmit={handleSubmit}>
-          <input className='search-txt' type="text" id="search" placeholder='riot id n shit'/>
+          <input className='search-txt' type="text" id="search" placeholder='riot id n shit' onChange={handleSearchInput}/>
           <a className='search-btn'>
             <FaSearch/>
           </a>
@@ -84,7 +91,8 @@ function App() {
         <div className='data'>
         {time.isError && <p className="err-load-txt">Something went wrong while fetching data</p>}
 
-        {time.isLoading ? (<p>Loading...</p>) : (<p className="err-load-txt">{time.data.type}</p>)}
+        {time.isLoading ? (<p>Loading...</p>) : 
+        (<p className="err-load-txt">{time.data.title}</p>)}
         </div>
       </div>
     </>
