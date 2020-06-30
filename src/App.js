@@ -66,7 +66,7 @@ function App() {
 
   return (
     <>
-      <div >
+      <div className='container' >
         <h1 className="title" >Addicted to Valorant</h1>
         <h4 className="sub-title"> HOW MUCH TIME HAVE YOU SPENT ON VALORANT?</h4>
 
@@ -81,10 +81,11 @@ function App() {
           </button> */}
         </form>
 
+        <div className='data'>
         {time.isError && <p className="err-load-txt">Something went wrong while fetching data</p>}
 
         {time.isLoading ? (<p>Loading...</p>) : (<p className="err-load-txt">{time.data.type}</p>)}
-        
+        </div>
       </div>
     </>
   );
