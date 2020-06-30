@@ -69,24 +69,26 @@ function App() {
 
   return (
     <>
-      <div >
-        <h1 className="title" >Addicted to Valorant</h1>
+      <div className='container'>
+        <div>
+          <h1 className="title">Addicted to Valorant</h1>
+          <form className='search-box' onSubmit={handleSubmit}>
+            <input className='search-txt' type="text" id="search" placeholder='riot id n shit'/>
+            <a className='search-btn'>
+              <FaSearch/>
+            </a>
+            {/* <button 
+              type="submit">
+              Submit
+            </button> */}
+          </form>
+        </div>
 
-        <form className='search-box' onSubmit={handleSubmit}>
-          <input className='search-txt' type="text" id="search" placeholder='riot id n shit'/>
-          <a className='search-btn'>
-            <FaSearch/>
-          </a>
-          {/* <button 
-            type="submit">
-            Submit
-          </button> */}
-        </form>
+        <div className='data'>
+          {time.isError && <p>Something went wrong while fetching data</p>}
 
-        {time.isError && <p>Something went wrong while fetching data</p>}
-
-        {time.isLoading ? (<p>Loading...</p>) : (<p>{time.data.type}</p>)}
-        
+          {time.isLoading ? (<p>Loading...</p>) : (<p>{time.data.type}</p>)}
+        </div>
       </div>
     </>
   );
