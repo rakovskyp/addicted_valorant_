@@ -3,7 +3,7 @@ import axios from 'axios';
 import "./App.css";
 import { FaSearch } from "react-icons/fa";
 
-const API_ENDPOINT = 'http://hn.algolia.com/api/v1/items/';
+const API_ENDPOINT = 'https://hn.algolia.com/api/v1/items/';
 
 // reducer function
 const timeReducer = (state, action) => {
