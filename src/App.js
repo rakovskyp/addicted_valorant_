@@ -49,27 +49,27 @@ function App() {
   }
 
   // Function to handle the submit button being clicked
-  const handleSubmit = (event) =>
+  const handleSubmit = (async (event) =>
   {
-    console.log("You clicked Submit");
+    // Prevents browser from reloading once submit is clicked
+    event.preventDefault();
+
+    console.log("You clicked Submit. Now with async");
 
     dispatchTime({type: 'TIME_FETCH_INIT'});
     
-    axios
-      .get(`${API_ENDPOINT}${userInput}`)
-      .then(result => {
-        dispatchTime({
-          type: 'TIME_FETCH_SUCCESS',
-          payload: result.data,
-        });
-      })
-      .catch(() =>
-        dispatchTime({ type: 'TIME_FETCH_FAILURE'} )
-      );
+    try {
+      const result = await axios.get(`${API_ENDPOINT}${userInput}`);
 
-    // Prevents browser from reloading once submit is clicked
-    event.preventDefault();
-  };
+      dispatchTime({
+        type: 'TIME_FETCH_SUCCESS',
+        payload: result.data,
+      });
+    }
+    catch {
+      dispatchTime({ type: 'TIME_FETCH_FAILURE'} )
+    }
+  });
 
   return (
     <>
