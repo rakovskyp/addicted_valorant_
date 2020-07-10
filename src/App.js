@@ -75,10 +75,10 @@ function App() {
     <>
       <div className='container' >
         <h1 className="title" >Addicted to Valorant</h1>
-        <h4 className="sub-title">ENTER YOUR NAME TO SEE THE TOTAL AMOUNT OF TIME YOU’VE SPENT ON VALORANT</h4>
+        <h4 className="sub-title">ENTER YOUR RIOT ID AND TAGLINE TO SEE THE TOTAL AMOUNT OF TIME YOU’VE SPENT ON VALORANT</h4>
 
         <form className='search-box' onSubmit={handleSubmit}>
-          <input className='search-txt' type="text" id="search" placeholder='username #tag' onChange={handleSearchInput}/>
+          <input className='search-txt' type="text" id="search" placeholder='RIOTID #TAGLINE' onChange={handleSearchInput}/>
           <a className='search-btn'>
             <FaSearch/>
           </a>
