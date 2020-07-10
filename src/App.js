@@ -89,7 +89,7 @@ function App() {
         </form>
 
         <div className='data'>
-        {time.isError && <p className="err-load-txt">Something went wrong while fetching data</p>}
+        {time.isError && <p className="err-load-txt">Invalid Credentials</p>}
 
         {time.isLoading ? (<p>Loading...</p>) : 
         (<p className="err-load-txt">{time.data.title}</p>)}
